@@ -48,7 +48,7 @@ function runEnter() {
     console.log(filteredData);
 
     // Append one table row `tr` for each ufo data object
-    data.forEach((sighting) => {
+    filteredData.forEach((sighting) => {
         var row = tbody.append("tr");
         Object.entries(sighting).forEach(([key, value]) => {
         var cell = row.append("td");
