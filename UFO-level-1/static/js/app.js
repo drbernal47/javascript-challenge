@@ -34,13 +34,16 @@ function runEnter() {
     // Select the input elements and get the raw HTML node
     var dateInput = d3.select("#datetime");
     var cityInput = d3.select("#city");
+    var stateInput = d3.select("#state");
   
     // Get the value property of the input element
     var dateValue = dateInput.property("value");
     var cityValue = cityInput.property("value").toLowerCase();
+    var stateValue = stateInput.property("value").toLowerCase();
 
     console.log(dateValue);
     console.log(cityValue);
+    console.log(stateValue);
 
     // Remove previous rows of the table
     tbody.selectAll("tr").remove();
@@ -58,6 +61,15 @@ function runEnter() {
         filteredData = filteredData.filter(sighting => sighting['city'] === cityValue);
     }
 
+    // Filter data based on the state
+    if (stateValue) {
+        filteredData = filteredData.filter(sighting => sighting['state'] === stateValue);
+    }
+
+
+
+
+
     console.log(filteredData);
 
     // Append one table row `tr` for each ufo data object
@@ -74,3 +86,4 @@ function runEnter() {
 
   };
   
+data.forEach(sighting => console.log(sighting['state']));
