@@ -36,17 +36,20 @@ function runEnter() {
     var cityInput = d3.select("#city");
     var stateInput = d3.select("#state");
     var countryInput = d3.select("#country");
+    var shapeInput = d3.select("#shape");
   
     // Get the value property of the input element
     var dateValue = dateInput.property("value");
     var cityValue = cityInput.property("value").toLowerCase();
     var stateValue = stateInput.property("value").toLowerCase();
     var countryValue = countryInput.property("value");
+    var shapeValue = shapeInput.property("value").toLowerCase();
 
     console.log(dateValue);
     console.log(cityValue);
     console.log(stateValue);
     console.log(countryValue);
+    console.log(shapeValue);
 
     // Remove previous rows of the table
     tbody.selectAll("tr").remove();
@@ -74,7 +77,10 @@ function runEnter() {
         filteredData = filteredData.filter(sighting => sighting['country'] === countryValue);
     }
 
-
+    // Filter data based on the shape
+    if (shapeValue) {
+        filteredData = filteredData.filter(sighting => sighting['shape'] === shapeValue);
+    }
 
 
 
@@ -93,5 +99,3 @@ function runEnter() {
 
 
   };
-  
-data.forEach(sighting => console.log(sighting['country']));
