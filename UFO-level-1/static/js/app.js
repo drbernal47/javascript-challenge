@@ -31,19 +31,32 @@ function runEnter() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
     
-    // Select the input element and get the raw HTML node
-    var inputElement = d3.select("#datetime");
+    // Select the input elements and get the raw HTML node
+    var dateInput = d3.select("#datetime");
+    var cityInput = d3.select("#city");
   
     // Get the value property of the input element
-    var inputValue = inputElement.property("value");
-  
-    console.log(inputValue);
+    var dateValue = dateInput.property("value");
+    var cityValue = cityInput.property("value").toLowerCase();
+
+    console.log(dateValue);
+    console.log(cityValue);
 
     // Remove previous rows of the table
     tbody.selectAll("tr").remove();
 
     // Filter data based on the date
-    var filteredData = data.filter(sighting => sighting['datetime'] === inputValue);
+    if (dateValue) {
+        var filteredData = data.filter(sighting => sighting['datetime'] === dateValue);
+    }
+    else {
+        var filteredData = data;
+    }
+
+    // Filter data based on the city
+    if (cityValue) {
+        filteredData = filteredData.filter(sighting => sighting['city'] === cityValue);
+    }
 
     console.log(filteredData);
 
